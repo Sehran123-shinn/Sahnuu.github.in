@@ -3,13 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sehran Lateef - Project 99</title>
+  <title>Project 99 - Sehran Lateef</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1e1e2f);
-      color: #e0e0e0;
+      background-color: #0f0f0f;
+      color: #f5f5f5;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      display: none;
+    }
+
+    .about-programmer {
+      color: #ccc;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .about-programmer span {
+      display: block;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .main-banner {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background-color: #1a1a1a;
+    }
+
+    .main-banner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 42px;
+      color: #fefefe;
+      margin: 0;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+      color: #fefefe;
+      text-align: center;
+    }
+
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background-color: #2c2c2c;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .template-box {
+      background-color: #1b1b1b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 4px #000;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #111;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .main-banner h2 {
+        font-size: 30px;
+      }
+
+      .section-title {
+        font-size: 20px;
+      }
+
+      .cosmic-gallery img {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .popeye {
+        width: 80px;
+        margin-top: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .popup {
@@ -17,113 +127,43 @@
       top: 20px;
       right: 20px;
       background-color: #222;
-      color: #00acee;
+      color: #eee;
       padding: 10px 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px #00acee;
+      box-shadow: 0 0 10px #000;
       z-index: 1000;
       animation: fadeOut 4s forwards;
     }
 
     @keyframes fadeOut {
-      0% { opacity: 1; }
-      80% { opacity: 1; }
+      0%, 80% { opacity: 1; }
       100% { opacity: 0; display: none; }
     }
 
-    header {
-      background-color: #000;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #007acc;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #007acc;
-    }
-
-    .about-developer {
-      color: #bbb;
-      font-size: 14px;
-      text-align: right;
-    }
-
-    .about-developer span {
-      display: block;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .main-banner {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(to right, #0f0f0f, #2e2e3f);
-    }
-
-    .main-banner h2 {
-      font-size: 48px;
-      color: #00bfff;
-    }
-
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #444;
-      padding-bottom: 10px;
-      color: #00acee;
-    }
-
-    textarea, input[type="file"] {
+    .cosmic-gallery img {
       width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      background-color: #333;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    .template-box {
-      background-color: #222;
-      padding: 20px;
       border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 10px #444;
+      box-shadow: 0 0 6px #000;
+      margin-bottom: 20px;
     }
 
-    .footer {
-      text-align: center;
-      padding: 30px;
-      background-color: #111;
-      color: #888;
-      font-size: 14px;
-    }
-
-    .footer a {
-      color: #00acee;
-      text-decoration: none;
+    .popeye {
+      width: 100px;
+      margin-top: -10px;
+      display: block;
     }
   </style>
 </head>
 <body>
+
   <div class="popup">Hello 66 User 👋</div>
 
   <header>
     <h1>Sehran Lateef</h1>
     <div class="about-programmer">
-      <span>About Developer</span>
-      Developed by Sahnuu,<br />CEO & Founder of Droid Team Association<br />
+     font-size="10" <span>About Developer</span>
+      Developed by Sahnuu,<br />
+      CEO & Founder of Droid Team Association
     </div>
   </header>
 
@@ -151,10 +191,22 @@
     </div>
   </section>
 
+  <section id="cosmic-gallery">
+    <div class="section-title">Cosmic Gallery</div>
+    <div class="template-box cosmic-gallery">
+      <img src="https://cdn.spacetelescope.org/archives/images/wallpaper2/heic1509a.jpg" alt="Black Hole" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Starsinthesky.jpg" alt="Stars" />
+      <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/potw2333a.jpg" alt="Galaxy Cluster" />
+      <img class="popeye" src="https://upload.wikimedia.org/wikipedia/en/6/6c/Popeye_the_Sailor.png" alt="Popeye" />
+    </div>
+     </section>
+
   <div class="footer">
     Contact: <a href="https://instagram.com/imc_ahraan" target="_blank">@imc_ahraan</a> on Instagram<br />
-    &copy; 2025 Sehran Latief | Project 99
+    &copy; 2025 Sehran Lateef | Project 99
   </div>
+
 
 </body>
 </html>
+
