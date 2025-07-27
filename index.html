@@ -6,6 +6,9 @@
   <title>Project 99 - Sehran Lateef</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,22 +17,18 @@
     }
 
     header {
-      background-color:;
       padding: 20px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       border-bottom: 1px solid #333;
-    }
-
-    header h1 {
-      display: none;
+      flex-wrap: wrap;
     }
 
     .about-programmer {
-      color:rgb(0,0,o);
-      font-size: 40px;
+      font-size: 16px;
       text-align: right;
+      color: #fff;
     }
 
     .about-programmer span {
@@ -40,26 +39,34 @@
 
     .main-banner {
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 60px 20px 30px;
       background-color: #1a1a1a;
+      position: relative;
     }
 
-    .main-banner h2 {
+    .main-banner h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 42px;
-      color: #fefefe;
+      font-size: 32px;
       margin: 0;
+      color: #fefefe;
+    }
+
+    .note {
+      color: red;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 16px;
     }
 
     section {
-      padding: 40px 20px;
+      padding: 30px 20px;
       max-width: 900px;
       margin: auto;
     }
 
     .section-title {
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 20px;
+      margin-bottom: 15px;
       border-bottom: 1px solid #444;
       padding-bottom: 10px;
       color: #fefefe;
@@ -67,15 +74,26 @@
     }
 
     textarea,
+    input[type="text"],
     input[type="file"] {
       width: 100%;
-      padding: 15px;
+      padding: 12px;
       margin: 10px 0;
       border: none;
       border-radius: 6px;
       background-color: #2c2c2c;
       color: #fff;
       font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
     .template-box {
@@ -88,7 +106,7 @@
 
     .footer {
       text-align: center;
-      padding: 30px;
+      padding: 20px;
       background-color: #111;
       color: #aaa;
       font-size: 14px;
@@ -99,86 +117,88 @@
       text-decoration: none;
     }
 
-    @media (max-width: 600px) {
-      .main-banner h2 {
-        font-size: 30px;
-      }
-
-      .section-title {
-        font-size: 20px;
-      }
-
-      .cosmic-gallery img {
-        width: 100%;
-        margin-bottom: 15px;
-      }
-
-      .popeye {
-        width: 80px;
-        margin-top: 10px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    /* Doraemon animation */
+    .doraemon {
+      position: absolute;
+      top: 10px;
+      left: -120px;
+      width: 100px;
+      animation: fly 6s ease-in-out forwards;
+      z-index: 100;
     }
 
-    .popup {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #222;
-      color: #eee;
-      padding: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #000;
-      z-index: 1000;
-      animation: fadeOut 4s forwards;
-    }
-
-    @keyframes fadeOut {
-      0%, 80% { opacity: 1; }
-      100% { opacity: 0; display: none; }
+    @keyframes fly {
+      0% { left: -120px; top: 10px; opacity: 0; }
+      10% { opacity: 1; }
+      50% { left: 50%; transform: translateX(-50%); top: 40px; }
+      100% { left: 110%; opacity: 0; }
     }
 
     .cosmic-gallery img {
       width: 100%;
       border-radius: 10px;
-      box-shadow: 0 0 6px #000;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 8px black;
     }
 
-    .popeye {
-      width: 100px;
-      margin-top: -10px;
-      display: block;
+    .popup {
+      background-color: #222;
+      color: #eee;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      animation: fadeInOut 5s forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .main-banner h1 {
+        font-size: 24px;
+      }
+
+      .section-title {
+        font-size: 18px;
+      }
+
+      .about-programmer {
+        font-size: 14px;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="bubble">Hello 66 User 👋</div>
-
   <header>
-    <h1>Sehran Lateef</h1>
     <div class="about-programmer">
-     <span>About Developer</span>
-     <b>Developed by Sahnuu </b>,<br />
+      <span>About Developer</span>
+      <b>Developed by Sahnuu</b>,<br />
       CEO & Founder of Droid Team Association
     </div>
   </header>
 
   <div class="main-banner">
+    <img src="https://i.imgur.com/VNYzRQo.png" alt="Doraemon" class="doraemon" />
     <h1>TUHUND KHUSH AAMDEED TO PROJECT 99</h1>
   </div>
-<h3>Note: Ye khasoosi website che pannis banawati anjaamas manz, make sure you visit on desktop mode</h3>
-  h3 { 
-  color:red:
-  }
+
+  <h3 class="note">Note: Ye khasoosi website che pannis banawati anjaamas manz, make sure you visit on desktop mode</h3>
+
   <section id="upload-poem">
     <div class="section-title">Kuch v</div>
     <div class="template-box">
       <label><strong>Text-Based Template</strong></label>
       <textarea rows="6" placeholder="Write your poem here..."></textarea>
+      <input type="file" />
     </div>
   </section>
 
@@ -186,20 +206,28 @@
     <div class="section-title">Poem that admin loves</div>
     <div class="template-box">
       <p><em>“cHaOs MaKeS the MuSe”</em></p>
-      <link rel="stylesheet" href="style.css">
-      <input type="text" placeholder="Leakhew haz yethen"> <button>submit</button>
+      <input type="text" placeholder="Leakhew haz yethen">
+      <button>Submit</button>
     </div>
-    <hr>
+  </section>
+
+  <section id="gallery">
+    <div class="section-title">Cosmic Wonders</div>
+    <div class="template-box cosmic-gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Black_Hole_-_Messier_87_crop_max_res.jpg/640px-Black_Hole_-_Messier_87_crop_max_res.jpg" alt="Black Hole">
+      <div class="popup">NASA’s first image of a black hole in galaxy M87</div>
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/ESO_-_Milky_Way.jpg/640px-ESO_-_Milky_Way.jpg" alt="Milky Way">
+      <div class="popup">Our Milky Way — viewed from the Atacama Desert</div>
+    </div>
+  </section>
 
   <div class="footer">
     Contact: <a href="https://instagram.com/imc_ahraan" target="_blank">@imc_ahraan</a> on Instagram<br />
     &copy; 2025 CAHRAAN | Project 99 &#10084;
-
   </div>
-
 
 </body>
 </html>
-
 
 
