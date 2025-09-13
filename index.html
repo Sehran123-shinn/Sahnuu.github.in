@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Digital Library</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>📚 Your Digital Library</h1>
-      <p>Browse and read books online for free</p>
-    </header>
+  <header>
+    <h1>Your Digital Library</h1>
+    <p>Read free books anytime, anywhere 📚</p>
+  </header>
 
-    <section id="book-list">
-      <!-- Books will appear here dynamically -->
-    </section>
+  <main>
+    <div id="bookshelf" class="bookshelf">
+      <!-- Books will be loaded here -->
+    </div>
+  </main>
 
-    <footer>
-      &copy; 2025 Your Digital Library. All rights reserved.
-    </footer>
-  </div>
+  <footer>
+    <p>Made with ❤️ using Supabase + GitHub Pages</p>
+  </footer>
 
   <script>
-    // ---- Supabase Configuration ----
-    const supabaseUrl = 'https://qnswyqfvkslyiasgwfgy.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFuc3d5cWZ2a3NseWlhc2d3Zmd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc3NDk2MDMsImV4cCI6MjA3MzMyNTYwM30.irmTOlJzHi8IfDssNvfYdNpv1B9OyyS2Du9MvZ8C1YI';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    // 🔑 Replace with your own Supabase details
+    const SUPABASE_URL = "https://qnswyqfvkslyiasgwfgy.supabase.co";
+    const SUPABASE_ANON_KEY = "YOUR-ANON-KEY-HERE";
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function loadBooks() {
-      // Fetch books from Supabase table "books"
-      const { data: books, error } = await supabase.from('books').select('*');
-      if(error) {
-        console.error('Error fetching books:', error);
+      const { data, error } = await supabaseClient.from("books").select("*");
+
+      if (error) {
+        console.error("❌ Error fetching books:", error);
         return;
       }
 
-      const bookList = document.getElementById('book-list');
+      console.log("✅ Books fetched:", data); // Debug log
 
-      books.forEach(book => {
-        const div = document.createElement('div');
-        div.className = 'book-item';
-        div.innerHTML = `
-          <img src="${book.cover_url}" alt="${book.title} cover">
-          <a href="${book.pdf_url}" target="_blank">${book.title}</a>
-          <span>by ${book.author}</span>
+      const shelf = document.getElementById("bookshelf");
+      shelf.innerHTML = ""; // Clear any old data
+
+      data.forEach(book => {
+        const card = document.createElement("div");
+        card.className = "book-card";
+        card.innerHTML = `
+          <img src="${book.cover_url}" alt="${book.title}">
+          <h3>${book.title}</h3>
+          <p>${book.author}</p>
+          <a href="${book.pdf_url}" target="_blank">📖 Read</a>
         `;
-        bookList.appendChild(div);
+        shelf.appendChild(card);
       });
     }
 
