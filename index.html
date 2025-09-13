@@ -1,70 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Digital Library</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
-</head>
-<body>
-  <header>
-    <h1>Your Digital Library</h1>
-    <p> Padev kitaab mufut 100% , teh karev shukriya  📚</p>
-  </header>
-<iframe 
-    src="https://qnswyqfvkslyiasgwfgy.supabase.co/storage/v1/object/sign/books/You've%20Reached%20Sam%20PDF.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NDhkY2UyMS0yMGJiLTQ3MDYtYjAxYS01ODUxMDFiYjk2NGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJib29rcy9Zb3UndmUgUmVhY2hlZCBTYW0gUERGLnBkZiIsImlhdCI6MTc1Nzc1NDY2MiwiZXhwIjoxNzg5MjkwNjYyfQ.k_De2n_xbZQBv5hFzzLyhMkwggr-L44Hn8RVUTHnuUo" 
-    width="100%" 
-    height="600px">
-</iframe>
-
-  <main>
-    <div id="bookshelf" class="bookshelf">
-      <!-- Books will be loaded here -->
-    </div>
-  </main>
-
-  <footer>
-    <p>Made with ❤️ by sahnuu </p>
-  </footer>
-
-  <script>
-    // 🔑 Replace with your own Supabase details
-    const SUPABASE_URL = "https://qnswyqfvkslyiasgwfgy.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFuc3d5cWZ2a3NseWlhc2d3Zmd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc3NDk2MDMsImV4cCI6MjA3MzMyNTYwM30.irmTOlJzHi8IfDssNvfYdNpv1B9OyyS2Du9MvZ8C1YI";
-
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    async function loadBooks() {
-      const { data, error } = await supabaseClient.from("books").select("*");
-
-      if (error) {
-        console.error("❌ Error fetching books:", error);
-        return;
-      }
-
-      console.log("✅ Books fetched:", data); // Debug log
-
-      const shelf = document.getElementById("bookshelf");
-      shelf.innerHTML = ""; // Clear any old data
-
-      data.forEach(book => {
-        const card = document.createElement("div");
-        card.className = "book-card";
-        card.innerHTML = `
-          <img src="${book.cover_url}" alt="${book.title}">
-          <h3>${book.title}</h3>
-          <p>${book.author}</p>
-          <a href="${book.pdf_url}" target="_blank">📖 Read</a>
-        `;
-        shelf.appendChild(card);
-      });
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Online Library</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 20px;
     }
 
-    loadBooks();
-  </script>
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #333;
+    }
+
+    .bookshelf {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .book {
+        width: 150px;
+        text-align: center;
+        background: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .book:hover {
+        transform: translateY(-5px);
+    }
+
+    .book img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .book-title {
+        margin: 10px 0 5px 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .read-btn {
+        display: inline-block;
+        margin-top: 5px;
+        padding: 5px 10px;
+        background-color: #4285f4;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .read-btn:hover {
+        background-color: #3367d6;
+    }
+
+    /* PDF viewer section */
+    .pdf-viewer {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .pdf-viewer iframe {
+        width: 80%;
+        height: 600px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>My Online Library</h1>
+
+<div class="bookshelf">
+    <!-- Book 1 -->
+    <div class="book">
+        <img src="https://via.placeholder.com/150x200?text=Book+Cover" alt="You've Reached Sam">
+        <div class="book-title">You've Reached Sam</div>
+        <a class="read-btn" href="#pdf1" onclick="openPDF('https://qnswyqfvkslyiasgwfgy.supabase.co/storage/v1/object/sign/books/You\'ve%20Reached%20Sam%20PDF.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV84NDhkY2UyMS0yMGJiLTQ3MDYtYjAxYS01ODUxMDFiYjk2NGIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJib29rcy9Zb3UndmUgUmVhY2hlZCBTYW0gUERGLnBkZiIsImlhdCI6MTc1Nzc1NDY2MiwiZXhwIjoxNzg5MjkwNjYyfQ.k_De2n_xbZQBv5hFzzLyhMkwggr-L44Hn8RVUTHnuUo')">Read</a>
+    </div>
+
+    <!-- Add more books here -->
+    <!-- Example Book -->
+    <!--
+    <div class="book">
+        <img src="BOOK_COVER_URL" alt="Book Name">
+        <div class="book-title">Book Name</div>
+        <a class="read-btn" href="#pdf2" onclick="openPDF('BOOK_PDF_URL')">Read</a>
+    </div>
+    -->
+</div>
+
+<div class="pdf-viewer">
+    <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+</div>
+
+<script>
+    function openPDF(url) {
+        document.getElementById('pdfFrame').src = url;
+        window.scrollTo({ top: document.getElementById('pdfFrame').offsetTop, behavior: 'smooth' });
+    }
+</script>
+
 </body>
 </html>
-
-
-
